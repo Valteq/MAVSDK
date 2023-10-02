@@ -97,9 +97,9 @@ void takeoff_and_land(std::shared_ptr<System> system)
         return;
     }
 
-    // Set up callback to monitor altitude while the vehicle is in flight
     telemetry.subscribe_position([system](Telemetry::Position position) {
-        std::cout << system -> get_system_id() << ": " << "Altitude: " << position.relative_altitude_m << " m\n";
+        int system_id = system->get_system_id();
+        std::cout << "System ID: " << system_id << ", Altitude: " << position.relative_altitude_m << " m\n";
     });
 
     // Check if vehicle is ready to arm
