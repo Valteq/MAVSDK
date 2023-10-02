@@ -30,14 +30,11 @@ RUN apt-get update \
 RUN wget https://github.com/mavlink/MAVSDK/releases/download/v1.4.17/libmavsdk-dev_1.4.17_ubuntu20.04_amd64.deb
 RUN dpkg -i libmavsdk-dev_1.4.17_ubuntu20.04_amd64.deb
 
-COPY . .
-
 WORKDIR /root/MAVSDK
-RUN git checkout valtec_dev
+COPY . .
 
 WORKDIR /root/MAVSDK/examples/multiple_drones_monitor/
 RUN cmake -Bbuild -H.
 RUN cmake --build build -j4
 
-WORKDIR /root
 ENTRYPOINT ["/bin/bash"]
